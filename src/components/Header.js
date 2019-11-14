@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Header = () => {
     return (
@@ -12,7 +12,7 @@ const Header = () => {
                     <div className='mr-auto'></div>
                     <ul className="navbar-nav mr-5">
                     <li className="nav-item">
-                        <a className="nav-link" href="#">GET RANDOM BEER <span class="sr-only">(current)</span></a>
+                        <a className="nav-link" href="#">GET RANDOM BEER <span className="sr-only">(current)</span></a>
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
