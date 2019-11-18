@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({search, beerInput, findBeer}) => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -11,13 +11,11 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <div className='mr-auto'></div>
                     <ul className="navbar-nav mr-5">
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">GET RANDOM BEER <span className="sr-only">(current)</span></a>
-                    </li>
+                    <li className="nav-item nav-link">GET RANDOM BEER</li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="NOTHING BUT BEER..." aria-label="Search"/>
-                    <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Beer Me</button>
+                    <input className="form-control mr-sm-2" type="search" placeholder="SEARCH BY BEER" aria-label="Search" value={search} onChange={(event) => beerInput(event)}/>
+                    <button className="btn btn-outline-primary my-2 my-sm-0" type="button" onClick={() => findBeer()}>Beer Me</button>
                     </form>
                 </div>
             </nav>

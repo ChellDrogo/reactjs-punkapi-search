@@ -5,7 +5,7 @@ import '../styles/Beers.css';
 const Beers = ({beerList}) => {
 
     const beerCards = beerList.map((beer) =>
-        <div className='col-md-3 col-sm-6 col-xs-12 m-1'>
+        <div className='col-md-3 col-sm-6 col-xs-12 mb-2'>
             <div className="card h-100 rounded" id='beer-card'>
                 <div className="card-header bg-dark text-white">{beer.name}</div>
                 <div className="card-body bg-light">
