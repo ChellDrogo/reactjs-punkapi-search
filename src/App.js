@@ -5,6 +5,7 @@ import Header from './components/Header.js';
 import Filters from './components/Filters.js';
 import Beers from './components/Beers.js';
 import Pagination from './components/Pagination.js';
+import Spinner from './components/Spinner.js';
 
 import './App.css';
 
@@ -14,18 +15,9 @@ const App = () => {
   const [page, currentPage] = useState(1);
   const [search, beerSearched] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPagination, setPagination] = useState(true);
   
   let PUNK_API = `https://api.punkapi.com/v2/beers`;
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get(PUNK_API);
-      getBeers(res.data);
-      setLoading(true);
-    };
-
-    fetchPosts();
-  }, []);
 
   useEffect(() => {
     let pageNumber = `?page=${page}`;
@@ -39,13 +31,17 @@ const App = () => {
   }, [page]);
 
   const prevPage = () => {
-    setLoading(false);
-    page > 1 ? currentPage(page - 1) : currentPage(1);
+    if (page > 1){
+      setLoading(false);
+      currentPage(page - 1)
+    }
   }
 
   const nextPage = () => {
-    setLoading(false);
-    currentPage(page + 1);
+    if (page < 13) {
+      setLoading(false);
+      currentPage(page + 1)
+    }
   };
   
   const beerInput = (event) => {
@@ -55,7 +51,15 @@ const App = () => {
   const findBeer = () => { 
     setLoading(false);
     let beerName = `?beer_name=${search}`;
-    let URL = search !== '' ? PUNK_API + beerName : PUNK_API;
+    let URL;
+    if (search !== ''){
+      URL = PUNK_API + beerName;
+      setPagination(false);
+    } else {
+      URL = PUNK_API;
+      setPagination(true);
+    }
+        
     const fetchPosts = async () => {
       const res = await axios.get(URL);
       getBeers(res.data);
@@ -65,21 +69,31 @@ const App = () => {
     fetchPosts();
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter'){
+      event.preventDefault();
+      findBeer();
+    }
+  }
+
   return (
     <div className='App'>
       <Header 
         search={search} 
         beerInput={beerInput}
         findBeer={findBeer}
+        handleKeyPress={handleKeyPress}
       />
       <div className='container' id='middle-container'>
         <Filters />
-        <Beers beerList={beerList}/>
-        <Pagination 
-          prevPage ={prevPage} 
-          nextPage={nextPage}
-          page={page}
-        />
+        {loading ? <Beers beerList={beerList}/> : <Spinner/>}
+        {showPagination && 
+          <Pagination 
+            prevPage ={prevPage} 
+            nextPage={nextPage}
+            page={page}
+          />
+        }
       </div>
     </div>
   )

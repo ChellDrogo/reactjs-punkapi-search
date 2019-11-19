@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Filters = () => {
+const Filters = ({reset}) => {
     return (
         <div className='container'>
             <div className="row">
@@ -29,7 +29,7 @@ const Filters = () => {
                     </div>
                 </div>
                 <div className="col-sm mt-3">
-                    <button type="button" className="btn btn-danger">RESET</button>
+                    <button type="button" className="btn btn-danger" onClick={() => window.location.reload()}>RESET</button>
                 </div>
             </div>
         </div>

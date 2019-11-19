@@ -9,7 +9,7 @@ const Beers = ({beerList}) => {
             <div className="card h-100 rounded" id='beer-card'>
                 <div className="card-header bg-dark text-white">{beer.name}</div>
                 <div className="card-body bg-light">
-                    <img className="card-img-top" id='card-imgs' src={beer.image_url}/>
+                    <img className="card-img-top" id='card-imgs' src={beer.image_url} alt={beer.name}/>
                     <p className="card-text">{beer.tagline}</p>
                 </div>
             </div>
