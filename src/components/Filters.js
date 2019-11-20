@@ -29,7 +29,7 @@ const Filters = ({reset}) => {
                     </div>
                 </div>
                 <div className="col-sm mt-3">
-                    <button type="button" className="btn btn-danger" onClick={() => window.location.reload()}>RESET</button>
+                    
                 </div>
             </div>
         </div>

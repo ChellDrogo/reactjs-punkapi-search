@@ -6,6 +6,7 @@ import Filters from './components/Filters.js';
 import Beers from './components/Beers.js';
 import Pagination from './components/Pagination.js';
 import Spinner from './components/Spinner.js';
+import Back from './components/Back.js';
 
 import './App.css';
 
@@ -20,7 +21,7 @@ const App = () => {
   let PUNK_API = `https://api.punkapi.com/v2/beers`;
 
   useEffect(() => {
-    let pageNumber = `?page=${page}`;
+    let pageNumber = `?page=${page}&per_page=24`;
     const fetchPosts = async () => {
       const res = await axios.get(PUNK_API + pageNumber);
       getBeers(res.data);
@@ -38,7 +39,7 @@ const App = () => {
   }
 
   const nextPage = () => {
-    if (page < 13) {
+    if (page < 14) {
       setLoading(false);
       currentPage(page + 1)
     }
@@ -50,7 +51,7 @@ const App = () => {
 
   const findBeer = () => { 
     setLoading(false);
-    let beerName = `?beer_name=${search}`;
+    let beerName = `?beer_name=${search}&per_page=24`;
     let URL;
     if (search !== ''){
       URL = PUNK_API + beerName;
@@ -75,7 +76,7 @@ const App = () => {
       findBeer();
     }
   }
-
+  
   return (
     <div className='App'>
       <Header 
@@ -85,14 +86,14 @@ const App = () => {
         handleKeyPress={handleKeyPress}
       />
       <div className='container' id='middle-container'>
-        <Filters />
         {loading ? <Beers beerList={beerList}/> : <Spinner/>}
-        {showPagination && 
+        {showPagination ? 
           <Pagination 
             prevPage ={prevPage} 
             nextPage={nextPage}
             page={page}
-          />
+          /> :
+          <Back />
         }
       </div>
     </div>

@@ -1,17 +1,19 @@
 import React from 'react';
 
+import '../styles/Header.css';
+
 const Header = ({search, beerInput, findBeer, handleKeyPress}) => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a className="navbar-brand" href="#">Punk API</a>
+                <div className="navbar-brand ml-4" id='api-header' onClick={() => window.location.reload()} >Punk API</div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <div className='mr-auto'></div>
                     <ul className="navbar-nav mr-5">
-                    <li className="nav-item nav-link">GET RANDOM BEER</li>
+                    <li className="nav-item nav-link" id='random-beer'>GET RANDOM BEER</li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
                     <input 
