@@ -12,9 +12,6 @@ const Header = ({search, beerInput, findBeer, handleKeyPress}) => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <div className='mr-auto'></div>
-                    <ul className="navbar-nav mr-5">
-                    <li className="nav-item nav-link" id='random-beer'>GET RANDOM BEER</li>
-                    </ul>
                     <form className="form-inline my-2 my-lg-0">
                     <input 
                         className="form-control mr-sm-2" 

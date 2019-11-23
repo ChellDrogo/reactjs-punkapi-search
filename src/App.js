@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 import Header from './components/Header.js';
-import Filters from './components/Filters.js';
 import Beers from './components/Beers.js';
 import Pagination from './components/Pagination.js';
 import Spinner from './components/Spinner.js';
